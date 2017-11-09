@@ -1,0 +1,123 @@
+package watermelon;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+public class homework2 extends JFrame implements ItemListener{
+    private JFrame frame;
+    private JTextArea t1;
+    private JTextArea t2;
+    private JComboBox c1;
+    private Color col1;
+    private Color col2;
+    //private JButton b1;
+    String money[]={"人民币<-->美元","美元<-->人民币","人民币<-->英镑","英镑<-->人民币",
+            "英镑<-->美元","美元<-->英镑"};
+    public homework2()
+    {
+        frame=new JFrame("hello watermelon");
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                System.exit(1);
+            }
+        });
+        frame.setSize(200, 250);
+        frame.setBackground(Color.WHITE);
+        frame.setLocation(300, 200);
+        c1 = new JComboBox();
+        frame.setLayout(new FlowLayout());
+        for (int j = 0; j < money.length; j++)
+            c1.addItem(money[j]);
+        frame.add(c1);
+        //c2 = new JComboBox();
+        frame.setLayout(new FlowLayout());
+        //for (int j = 0; j < money.length; j++)
+        //  c2.addItem(money[j]);
+        t1 = new JTextArea("请输入数据", 2,10 );
+        frame.add(t1);
+        //frame.add(c2);
+        t2 = new JTextArea("计算后的结果", 2, 10);
+        frame.add(t2);
+        col1=Color.PINK;
+        col2=Color.green;
+        t1.setBackground(col1);
+        t2.setBackground(col2);
+        //b1=new JButton("开始计算");
+        //frame.add(b1);
+        c1.addItemListener(this);
+        frame.setVisible(true);
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+        int i=0;
+        String str=(String)e.getItem();
+        for(int c=0;c<money.length;c++)
+            if(str==money[c])
+                i=c1.getSelectedIndex();
+        huansuan(i);
+    }
+    public void huansuan(int i)
+    {
+        if(i==0)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=0.1509;
+            a=content;
+            b=a*c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+        if(i==1)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=0.1509;
+            a=content;
+            b=a/c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+        if(i==2)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=0.1148;
+            a=content;
+            b=a*c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+        if(i==3)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=0.1148;
+            a=content;
+            b=a/c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+        if(i==4)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=1.3138;
+            a=content;
+            b=a*c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+        if(i==5)
+        {
+            double content=Double.valueOf(t1.getText());
+            double a,b,c=1.3138;
+            a=content;
+            b=a/c;
+            String out=String.valueOf(b);
+            t2.setText(out);
+        }
+    }
+    public static void main (String[] args) {
+        new homework2();
+    }
+}
